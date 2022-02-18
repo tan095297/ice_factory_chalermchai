@@ -61,10 +61,10 @@ public class CameraController {
 
     @PatchMapping("/{id}")
     public ResponseEntity<Object> addEvents(@PathVariable String id, @RequestBody Event event){
+        event.setCreatedAt(new Date(System.currentTimeMillis()));
         HashMap<String, Object> map = new HashMap<>();
         map.put("msg", "Add amount Success!");
         map.put("data", cameraService.addEvent(id, event));
-        event.setCreatedAt(new Date(System.currentTimeMillis()));
         return new ResponseEntity<Object>(map,HttpStatus.OK);
     }
 
